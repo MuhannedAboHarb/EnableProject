@@ -19,3 +19,9 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::view('/cms/admin', 'cms.parent');
+
+
+Route::prefix('cms/admin')->group(function(){
+    Route::view('/', 'cms.parent');
+    Route::view('/index', 'cms.temp.index');
+});
