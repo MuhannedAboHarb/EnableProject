@@ -15,6 +15,8 @@ class CityController extends Controller
     public function index()
     {
         //
+        $data = City::all();
+
     }
 
     /**
