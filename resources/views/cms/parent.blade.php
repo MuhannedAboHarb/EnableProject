@@ -226,7 +226,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
 
-          <li class="nav-header">EXAMPLES</li>
+          <li class="nav-header">Content Mangement</li>
           <li class="nav-item ">
             <a href="#" class="nav-link ">
               <i class="nav-icon fas fa-globe-europe"></i>
@@ -237,13 +237,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link ">
+                <a href="{{route('cities.create')}}" class="nav-link ">
                   <i class="fas fa-plus-square nav-icon"></i>
                   <p>Create</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{route('cities.index')}}" class="nav-link">
                   <i class="fas fa-th-list nav-icon"></i>
                   <p>Index </p>
                 </a>
