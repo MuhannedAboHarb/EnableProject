@@ -16,6 +16,7 @@ class CityController extends Controller
     {
         //
         $data = City::all();
+        return response()->view('cms.cities.index' , ['cities' => $data]);
 
     }
 
