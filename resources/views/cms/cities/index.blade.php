@@ -55,7 +55,16 @@
                         <td>{{$city->name}}</td>
                         <td>{{$city->created_at}}</td>
                         <td>{{$city->updated_at}}</td>
-                        <td>-</td>
+                        <td>
+                          <div class="btn-group">
+                            <a href="{{route('cities.edit',$city->id)}}" class="btn btn-info">
+                              <i class="fas fa-edit"></i>
+                            </a>
+                            <button type="button" class="btn btn-danger">
+                              <i class="fas fa-trash"></i>
+                            </button>
+                          </div>
+                        </td>
                       </tr>
                       @endforeach
                     </tbody>
