@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SiginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,4 +18,9 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::view('/cms/admin','cms.parent');
+
+Route::prefix('cms/admin')->group(function(){
+    Route::view('/','cms.parent');
+Route::view('/index','cms.temp.index');
+    Route::resource('sigines',SiginController::class);
+});
