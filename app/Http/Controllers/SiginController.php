@@ -13,6 +13,8 @@ class SiginController extends Controller
     public function index()
     {
         //
+        $data = Sigin::all();
+        return response()->view('cms.sigines.index' , ['sigines' => $data]);
     }
 
     /**

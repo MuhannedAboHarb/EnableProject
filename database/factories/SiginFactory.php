@@ -18,6 +18,7 @@ class SiginFactory extends Factory
     {
         return [
             //
+            'name'=>$this->faker->sigin()
         ];
     }
 }
