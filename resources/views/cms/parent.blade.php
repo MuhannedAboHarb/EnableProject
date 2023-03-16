@@ -253,6 +253,31 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
 
+          <li class="nav-item ">
+            <a href="#" class="nav-link ">
+              <i class="nav-icon fas fa-clone"></i>
+              <p>
+                Categories
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('categories.create')}}" class="nav-link ">
+                  <i class="fas fa-plus-square nav-icon"></i>
+                  <p>Create</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('categories.index')}}" class="nav-link">
+                  <i class="fas fa-th-list nav-icon"></i>
+                  <p>Index </p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
