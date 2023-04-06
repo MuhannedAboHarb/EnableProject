@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
+
 // use Illuminate\Http\Response;
 
 class CategoryController extends Controller
@@ -68,5 +70,9 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         //
+        $isDeleted = $category->delete();
+         return response()->json(['icon'=>$isDeleted ? 'success' : 'error' ,
+         'title'=>$isDeleted ? 'Deleted Successfully' :  'Deleted Failed'
+        ] , $isDeleted ? Response::HTTP_OK : Response::HTTP_BAD_REQUEST);
     }
 }

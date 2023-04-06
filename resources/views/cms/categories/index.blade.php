@@ -65,7 +65,7 @@
                             <a href="{{route('categories.edit',$category->id)}}" class="btn btn-info">
                               <i class="fas fa-edit"></i>
                             </a>
-                            <a href="#" onclick="confirmDestroy()" class="btn btn-danger">
+                            <a href="#" onclick="confirmDestroy('{{$category->id}}',this)" class="btn btn-danger">
                               <i class="fas fa-trash"></i>
                             </a>
                           </div>
@@ -89,7 +89,7 @@
 
 @section('scripts')
     <script>
-      function confirmDestroy(){
+      function confirmDestroy(id,reference){
           Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -100,24 +100,34 @@
             confirmButtonText: 'Yes, delete it!'
           }).then((result) => {
                 if (result.isConfirmed) {
-                  showMessage()
+                  destroy(id,reference);
                 }
               })
       }
 
 
-      function destroy(){
+      function destroy(id,reference){
         //JS Axios
+        // Make a request for a user with a given ID
+        axios.delete('/cms/admin/categories/'+id)
+            .then(function (response) {
+              // handle success
+              console.log(response);
+              reference.closest('tr').remove();
+              showMessage(response.data);
+          })
+            .catch(function (error) {
+              // handle error
+              console.log(error);
+              showMessage(error.response.data);
+          });
       }
 
-
-
-
-      function showMessage(){
+      function showMessage(data){
           Swal.fire({
             // position: 'top-end',
-            icon: 'success',
-            title: 'Your work has been saved',
+            icon: data.icon,
+            title: data.title,
             showConfirmButton: false,
             timer: 1500
         })        
