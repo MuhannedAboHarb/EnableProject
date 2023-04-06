@@ -65,13 +65,9 @@
                             <a href="{{route('categories.edit',$category->id)}}" class="btn btn-info">
                               <i class="fas fa-edit"></i>
                             </a>
-                            <form method="POST" action="{{route('categories.destroy',$category->id)}}">
-                              @csrf
-                              @method('DELETE')
-                              <button type="submit" class="btn btn-danger">
-                                <i class="fas fa-trash"></i>
-                              </button>
-                            </form>
+                            <a href="#" onclick="confirmDestroy()" class="btn btn-danger">
+                              <i class="fas fa-trash"></i>
+                            </a>
                           </div>
                         </td>
                       </tr>
@@ -92,5 +88,39 @@
 
 
 @section('scripts')
-    
+    <script>
+      function confirmDestroy(){
+          Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+          }).then((result) => {
+                if (result.isConfirmed) {
+                  showMessage()
+                }
+              })
+      }
+
+
+      function destroy(){
+        //JS Axios
+      }
+
+
+
+
+      function showMessage(){
+          Swal.fire({
+            // position: 'top-end',
+            icon: 'success',
+            title: 'Your work has been saved',
+            showConfirmButton: false,
+            timer: 1500
+        })        
+      }
+    </script>
 @endsection
