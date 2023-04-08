@@ -57,7 +57,6 @@
                         <td>{{$category->name}}</td>
                         <td>{{$category->description}}</td>
                      <td> <span class="badge @if ($category->status) bg-success @else bg-danger @endif">{{$category->visibility}}</span></td>
-                      <td>{{$category->visibility}}</td>
                         <td>{{$category->created_at}}</td>
                         <td>{{$category->updated_at}}</td>
                         <td>
