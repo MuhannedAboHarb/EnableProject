@@ -30,6 +30,19 @@
                       <div class="input-group-append">
                         <button type="submit" class="btn btn-default">
                           <i class="fas fa-search"></i>
+                          <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores tempora consequuntur nobis est delectus labore modi ex architecto, exercitationem, dolorem beatae cumque corporis, ipsam quia praesentium porro veritatis aliquid perferendis.
+            
+                          </p>
+                          <div class="niceman">
+                            <header>
+                              <nav>
+                                <ul>
+                                  <li>About</li>
+                                </ul>
+                              </nav>
+                            </header>
+                          </div>
                         </button>
                       </div>
                     </div>
