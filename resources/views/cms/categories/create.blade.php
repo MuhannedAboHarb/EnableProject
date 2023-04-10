@@ -25,39 +25,32 @@
                   <h3 class="card-title">Create City</h3>
                 </div> 
                 <!-- /.card-header -->
-
-                @if($errors->any())
-                <div class="alert alert-danger alert-dismissible">
-                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                  <h5><i class="icon fas fa-ban"></i> Alert!</h5>
-                   @foreach ($errors->all() as $error )
-                     <li>{{$error}}</li>
-                   @endforeach
-                </div>
-                @endif
-
-
-                @if(session()->has('message'))
-                <div class="alert alert-success alert-dismissible">
-                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                  <h5><i class="icon fas fa-check"></i> Alert!</h5>
-                  {{session('message')}}
-                </div>
-                @endif
-
                 <!-- form start -->
-                <form method="POST" action="{{route('cities.store')}}">
+                <form>
                   @csrf
                   <div class="card-body">
                     <div class="form-group">
                       <label for="name">Name </label>
-                      <input type="text" class="form-control" name="name" id="name" value="{{old('name')}}" placeholder="Enter name">
+                      <input type="text" class="form-control"  id="name"  placeholder="Enter name">
+                    </div>
+
+
+                    <div class="form-group">
+                      <label>Description</label>
+                      <textarea class="form-control" id="description" rows="3" placeholder="Enter ..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                      <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="status">
+                        <label class="custom-control-label" for="status">Visible</label>
+                      </div>
                     </div>
                   </div>
                   <!-- /.card-body -->
   
                   <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="button"  onclick="store()" class="btn btn-primary">Submit</button>
                   </div>
                 </form>
               </div>
@@ -73,5 +66,25 @@
 
 
 @section('scripts')
-    
+    <script>
+        function store(){
+            axios.post('/cms/admin/categories')
+            .then(function (response) {
+              console.log(response);
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+        }
+
+        function showMessage(data){
+          Swal.fire({
+            // position: 'top-end',
+            icon: data.icon,
+            title: data.title,
+            showConfirmButton: false,
+            timer: 1500
+        })        
+      }
+    </script>
 @endsection
