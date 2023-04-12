@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use Dotenv\Validator;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -35,9 +37,20 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        // $validator=Valida2tor($request->all(),
+        $validator=Validator($request->all(),[
+            'name' => 'required|string|min:3|max:45',
+            'description' => 'nullable|string|min:3|max:100',
+            'status' => 'required|boolean',
+        ]);
+        if(! $validator->fails()){
 
+        }else{                          // هاتلي حقيبة الاخطاء هات اول خطأ
+            return response()->json(['message'=>$validator->getMessageBag()->first()
+        ],Response::HTTP_BAD_REQUEST);
+        }
+    }
+ 
     /**
      * Display the specified resource.
      */
@@ -76,3 +89,4 @@ class CategoryController extends Controller
         ] , $isDeleted ? Response::HTTP_OK : Response::HTTP_BAD_REQUEST);
     }
 }
+ 

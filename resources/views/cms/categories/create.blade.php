@@ -68,12 +68,19 @@
 @section('scripts')
     <script>
         function store(){
-            axios.post('/cms/admin/categories')
+            axios.post('/cms/admin/categories',{
+              name: document.getElementById('name').value,
+              description: document.getElementById('description').value,
+              // description: document.getElementById('description').value,
+              status: document.getElementById('status').checked,
+            })
             .then(function (response) {
               console.log(response);
+              toastr.success(response.data.message);
             })
             .catch(function (error) {
               console.log(error);
+              toastr.error(error.response.data.message);
             });
         }
 

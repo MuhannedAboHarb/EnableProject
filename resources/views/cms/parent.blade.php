@@ -16,6 +16,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('cms/dist/css/adminlte.min.css')}}">
 
+  <link rel="stylesheet" href="asset{{'cms/plugins/toastr/toastr.min.css'}}">
+  
+
   @yield('styles')
 </head>
 
@@ -344,6 +347,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{asset('js/sweet_alert.js')}}"></script>
 <script src="{{asset('js/axios.js')}}"></script>
 {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
+
+<script src="asset{{'cms/plugins/toastr/toastr.min.js'}}"></script>
 @yield('scripts')
 </body>
 </html>
