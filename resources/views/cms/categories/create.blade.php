@@ -1,9 +1,9 @@
 @extends('cms.parent')
 
 @section('title', '')
-@section('page-big-title', 'Create City')
-@section('page-main-title', 'Create City')
-@section('page-sub-title', 'Cities')
+@section('page-big-title', 'Create Categorey')
+@section('page-main-title', 'Create Categorey')
+@section('page-sub-title', 'Categoreies')
 
 
 @section('styles')
@@ -22,11 +22,11 @@
               <!-- general form elements -->
               <div class="card card-primary">
                 <div class="card-header">
-                  <h3 class="card-title">Create City</h3>
+                  <h3 class="card-title">Create Categorey</h3>
                 </div> 
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form>
+                <form id="create-form">
                   @csrf
                   <div class="card-body">
                     <div class="form-group">
@@ -71,11 +71,11 @@
             axios.post('/cms/admin/categories',{
               name: document.getElementById('name').value,
               description: document.getElementById('description').value,
-              // description: document.getElementById('description').value,
               status: document.getElementById('status').checked,
             })
             .then(function (response) {
               console.log(response);
+              document.getElementById('create-form').reset();
               toastr.success(response.data.message);
             })
             .catch(function (error) {

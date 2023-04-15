@@ -44,10 +44,18 @@ class CategoryController extends Controller
             'status' => 'required|boolean',
         ]);
         if(! $validator->fails()){
-
+            $category=new Category();
+            $category->name =$request->input('name');
+            $category->description=$request->input('description'); // هو اصلا بقبلها null حتى لو كانت 
+            $category->status=$request->input('status');
+            $isSaved = $category->save();
+            return response()->json([
+                'message'=>$isSaved ? 'Created Successfully' : 'Created Failed' 
+            ],$isSaved ? Response::HTTP_CREATED : Response::HTTP_BAD_REQUEST );
         }else{                          // هاتلي حقيبة الاخطاء هات اول خطأ
-            return response()->json(['message'=>$validator->getMessageBag()->first()
-        ],Response::HTTP_BAD_REQUEST);
+            return response()->json([
+                'message'=>$validator->getMessageBag()->first()
+        ],Response::HTTP_BAD_REQUEST); // راحت ع 400 واستقبلها في الكاش
         }
     }
  
@@ -75,6 +83,25 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         //
+        $validator = Validator($request->all(), [
+            'name'=> 'required|string|min:3|max:45',
+            'description'=> 'nullable|string|min:3|max:100',
+            'status'=> 'required|boolean'
+        ]);
+
+        if(! $validator->fails()){
+            $category->name =$request->input('name');
+            $category->description =$request->input('description');
+            $category->status =$request->input('status');
+            $isUpdated = $category ->save();
+            return response()->json([
+                'message'=>$isUpdated ? 'Update Successfully' : 'Update Failed' 
+            ],$isUpdated ? Response::HTTP_OK : Response::HTTP_BAD_REQUEST );
+        }else{
+                return response()->json(['message'=>$validator->getMessageBag()->first()
+            ] , Response::HTTP_BAD_REQUEST);
+        }
+
     }
 
     /**
