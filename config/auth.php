@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\App;
+
 return [
 
     /*
@@ -40,6 +42,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ]
     ],
 
     /*
@@ -64,6 +70,19 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
+        // 'admins' =>[
+        //      'driver' => 'database',
+        //      'table' => 'admins',     tabelمورد البيانات عبارة عن 
+        // ]
+
+
+        'admins' =>[
+            'driver' => 'eloquent',
+            'model' =>App\Models\Admin::class  // modelمورد البيانات يتم من خلال ال 
+       ]
+
+
+
 
         // 'users' => [
         //     'driver' => 'database',

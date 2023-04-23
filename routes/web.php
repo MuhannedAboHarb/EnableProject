@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CityController;
 use App\Http\Middleware\CheckAge;
@@ -27,7 +28,7 @@ Route::view('/cms/admin', 'cms.parent');
 
 
 Route::prefix('cms/admin')->group(function(){
-    Route::view('login', 'cms.auth.login');
+    Route::get('login', [AuthController::class, 'showLogin'])->name('auth.login');
 });
 
 
