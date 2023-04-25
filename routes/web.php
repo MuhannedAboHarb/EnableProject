@@ -32,7 +32,7 @@ Route::prefix('cms/admin')->group(function(){
 });
 
 
-Route::prefix('cms/admin')->group(function(){
+Route::prefix('cms/admin')->middleware('auth:admin')->group(function(){
     Route::view('/', 'cms.parent');
     Route::view('/index', 'cms.temp.index');
     Route::resource('cities',CityController::class);
