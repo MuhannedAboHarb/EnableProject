@@ -18,35 +18,7 @@ class Authenticate extends Middleware
     }
 
 
-    public function login(Request $request){
-        $validator=Validator($request->all(),[
-            'email' => 'required|string|email',
-            'password' => 'required|string|min:1|max:20',
-            'remember_me'=> 'required|boolean',
-        ]);
-
-        if($validator->fails())
-        {
-            $credentials= ['email'=>$request->input('email'), 'password'=>$request->input('password')];
-                if(Auth::guard('admin')->attempt($credentials,$request->input('remember_me')))
-                {
-                    return response()->json([
-                        'message'=> 'Logged in Successfully '
-                    ], Response::HTTP_OK);
-                } 
-                else 
-                {
-                    return response()->json([
-                        'message'=> $validator->getMessageBag()->first()
-                    ], Response::HTTP_BAD_REQUEST);
-                }
-        } 
         
-        else 
-        {
-            return response()->json([
-                'message'=> $validator->getMessageBag()->first()
-            ], Response::HTTP_BAD_REQUEST);
         }
     }
 }
