@@ -14,15 +14,9 @@ class Authenticate extends Middleware
      */
     protected function redirectTo(Request $request): ?string
     {
-        return $request->expectsJson() ? null : route('auth.login');
+        return $request->expectsJson() ? null : route('auth.login-view');
     }
 
 
-        
-        }
-    }
+
 }
-
-//attempt : هيه عملية تجرى إما على
-//Response::HTTP_BAD_REQUEST :Symfony\componet\.. لما تكتب هذه استدعي مكتبة 
-// if(Auth::guard... : ال اوت بتعمل هاش لوحدها وبتطابق ال الايميل مع الايميل والباس مع الباسورد طبعا الهاش معمول في الداتا بيز تعتك
