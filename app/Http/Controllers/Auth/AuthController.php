@@ -25,7 +25,7 @@ class AuthController extends Controller
              'remember_me'=> 'required|boolean',
         ]);
 
-        if($validator->fails())
+        if( !$validator->fails())
         {
             $credentials=['email'=>$request->input('email'), 'password'=>$request->input('password')];
 
