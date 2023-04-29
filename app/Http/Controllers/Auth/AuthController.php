@@ -25,7 +25,7 @@ class AuthController extends Controller
              'remember_me'=> 'required|boolean',
         ]);
 
-        if( !$validator->fails())
+        if(! $validator->fails())
         {
             $credentials=['email'=>$request->input('email'), 'password'=>$request->input('password')];
 
@@ -38,7 +38,7 @@ class AuthController extends Controller
             else 
             {
                 return response()->json([
-                    'message'=>"TESTER"
+                    'message'=>"That's Is error try"
             ], Response::HTTP_BAD_REQUEST);
             }
         }
