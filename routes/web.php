@@ -33,7 +33,7 @@ Route::prefix('cms/admin')->group(function(){
 });
 
 
-Route::prefix('cms/admin')->middleware('auth:admin')->group(function(){
+Route::prefix('cms/admin')->group(function(){
     Route::view('/', 'cms.parent');
     Route::view('/index', 'cms.temp.index');
     Route::resource('cities',CityController::class);
@@ -54,12 +54,13 @@ Route::prefix('cms/admin')->middleware('auth:admin')->group(function(){
 // Route::prefix('mw')->middleware(['','']) عبارة عن قروب مدلوير
 
 
-Route::prefix('mw')->middleware('age:12')->group(function(){
-    Route::get('check1',function(){
-        echo 'Check 1 PASSED';
-    });
-    Route::get('check2',function(){
-        echo 'Check 2 PASSED';
-    })->withoutMiddleware('age'); // مستتنى من القروب الي عُمم عليه 
+// Route::prefix('mw')->middleware('age:12')->group(function(){
+//     Route::get('check1',function(){
+//         echo 'Check 1 PASSED';
+//     });
+//     Route::get('check2',function(){
+//         echo 'Check 2 PASSED';
+//     })->withoutMiddleware('age');
+//      // مستتنى من القروب الي عُمم عليه 
 
-});
+// });

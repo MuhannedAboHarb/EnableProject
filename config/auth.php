@@ -76,10 +76,7 @@ return [
         // ]
 
 
-        'admins' =>[
-            'driver' => 'eloquent',
-            'model' =>App\Models\Admin::class  // modelمورد البيانات يتم من خلال ال 
-       ]
+
 
 
 
@@ -88,6 +85,11 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+    ],
+
+    'admins' =>[
+        'driver' => 'eloquent',
+        'model' =>App\Models\Admin::class  // modelمورد البيانات يتم من خلال ال 
     ],
 
     /*
