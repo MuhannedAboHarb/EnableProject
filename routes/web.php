@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CityController;
 use App\Http\Middleware\CheckAge;
+use App\Models\Admin;
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
 
@@ -33,7 +34,7 @@ Route::prefix('cms/admin')->group(function(){
 });
 
 
-Route::prefix('cms/admin')->group(function(){
+Route::prefix('cms/admin')->middleware('auth:admin') ->group(function(){
     Route::view('/', 'cms.parent');
     Route::view('/index', 'cms.temp.index');
     Route::resource('cities',CityController::class);

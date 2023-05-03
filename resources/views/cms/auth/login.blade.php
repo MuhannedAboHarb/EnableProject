@@ -55,7 +55,7 @@
           </div>
           <!-- /.col -->
           <div class="col-4">
-            <button type="button" onclick=" login()" class="btn btn-primary btn-block">Sign In</button>
+            <button type="button" onclick="login()" class="btn btn-primary btn-block">Sign In</button>
           </div>
           <!-- /.col -->
         </div>
@@ -77,14 +77,11 @@
 <script src="{{asset('cms/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{asset('cms/dist/js/adminlte.min.js')}}"></script>
-
 <script src="{{asset('js/axios.js')}}"></script>
 <script src="{{asset('cms/plugins/toastr/toastr.min.js')}}"></script>
 
-
 <script>
-   function login()
-   {
+          function login(){
             axios.post('/cms/admin/login',{
               email: document.getElementById('email').value,
               password: document.getElementById('password').value,
@@ -92,16 +89,15 @@
             })
             .then(function (response) {
               console.log(response);
-             // toastr.success(response.data.message);
-             window.location.href= '/cms/admin';
+              // toastr.success(response.data.message);
+              window.location.href= '/cms/admin';
             })
             .catch(function (error) {
               console.log(error.response);
               toastr.error(error.response.data.message);
             });
-    }
+        }
 </script>
-
 
 </body>
 </html>

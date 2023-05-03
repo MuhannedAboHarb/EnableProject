@@ -44,7 +44,7 @@ return [
         ],
         'admin' => [
             'driver' => 'session',
-            'provider' => 'admins',
+            'provider' =>'admins'
         ]
     ],
 
@@ -70,26 +70,15 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-        // 'admins' =>[
-        //      'driver' => 'database',
-        //      'table' => 'admins',     tabelمورد البيانات عبارة عن 
-        // ]
-
-
-
-
-
-
+        'admins' => [
+            'driver' => 'eloquent',
+            'model'=> App\Models\Admin::class
+        ]
 
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
-    ],
-
-    'admins' =>[
-        'driver' => 'eloquent',
-        'model' =>App\Models\Admin::class  // modelمورد البيانات يتم من خلال ال 
     ],
 
     /*
