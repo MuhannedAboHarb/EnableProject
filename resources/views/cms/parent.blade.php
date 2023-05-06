@@ -279,7 +279,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </ul>
           </li>
 
-
+          <li class="nav-header">Settings</li>
+          <li class="nav-item">
+            <a href="{{route('auth.logout')}}" class="nav-link">
+              <i class="fas fa-sign-out-alt nav-icon"></i>
+              <p>Logout</p>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

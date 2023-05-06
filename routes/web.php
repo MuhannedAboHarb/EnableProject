@@ -28,18 +28,20 @@ use Illuminate\Support\Facades\Route;
 Route::view('/cms/admin', 'cms.parent');
 
 
-Route::prefix('cms/admin')->middleware('guest:admin')->group(function(){
+Route::prefix('cms/admin')->middleware('guest:admin,broker')->group(function(){
     Route::get('login', [AuthController::class, 'showLogin'])->name('auth.login-view');
     Route::post('login',[AuthController::class, 'login'])->name('auth.login');
 });
 
 
-Route::prefix('cms/admin')->middleware('auth:admin')->group(function(){
+Route::prefix('cms/admin')->middleware('auth:admin,broker')->group(function(){
     Route::view('/', 'cms.parent');
     Route::view('/index', 'cms.temp.index');
     Route::resource('cities',CityController::class);
 
     Route::resource('categories' , CategoryController::class);
+
+    Route::get('logout',[AuthController::class,'logout'])->name('auth.logout');
 });
 
 

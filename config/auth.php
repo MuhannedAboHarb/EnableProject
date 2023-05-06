@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\App;
 use App\Models\Admin;
+use App\Models\Broker;
 
 
 
@@ -48,6 +49,10 @@ return [
         'admin' => [
             'driver' => 'session',
             'provider' =>'admins'
+        ],
+        'broker' => [
+            'driver' => 'session',
+            'provider' =>'brokers'
         ]
     ],
 
@@ -76,6 +81,10 @@ return [
         'admins' => [
             'driver' => 'eloquent',
             'model'=> Admin::class,
+        ],
+        'brokers' => [
+            'driver' => 'eloquent',
+            'model' => Broker::class
         ]
 
         // 'users' => [
