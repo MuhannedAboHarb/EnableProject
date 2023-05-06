@@ -30,7 +30,7 @@ class AuthController extends Controller
                             ], Response::HTTP_OK);
                         }else{
                             return response()->json([
-                                'message' => $validator->getMessageBag()->first()
+                                'message' => 'Please check your email or password'
                             ], Response::HTTP_BAD_REQUEST);
                         }
         } else {
