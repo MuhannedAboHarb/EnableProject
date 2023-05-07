@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 // use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -43,6 +45,36 @@ class AuthController extends Controller
         }
     }
 
+    
+    public function editPassword(Request $request)
+    {
+        return response()->view('cms.auth.edit-password');
+    }
+
+
+    public function updatePassword(Request $request)
+    {
+        $guard = auth('admin')->check() ? 'admin' : 'broker';
+        $validator =Validator($request->all() , [
+            'password'=> 'required|string|current_password:'.$guard,
+            'new_password'=> 'required|string|min:3|max:25|confirmed',
+            'new_password_confirmation'=> 'required|string|min:3|max:25',
+        ]);
+
+        if(! $validator->fails())
+        {
+            $user = auth($guard)->user();
+            $user->password = Hash::make($request->input('new_password'));
+            $isSaved = $user->save();
+            return response()->json([
+                'message' =>$isSaved ? 'Password changed successfully' : 'Password changed failed'
+            ], $isSaved ? Response::HTTP_OK :  Response::HTTP_BAD_REQUEST);
+        } else{
+            return response()->json([
+                'message' => $validator->getMessageBag()->first()
+            ], Response::HTTP_BAD_REQUEST);
+        }
+    }
 
     //Logout
     public function logout(Request $request)
