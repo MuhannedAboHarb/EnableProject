@@ -44,6 +44,10 @@ Route::prefix('cms/admin')->middleware('auth:admin,broker')->group(function(){
     Route::get('edit-password', [AuthController::class , 'editPassword'])->name('auth.edit-password');
     Route::put('update-password', [AuthController::class , 'updatePassword']);
 
+    Route::get('edit-profile', [AuthController::class , 'editProfile'])->name('auth.edit-profile');
+    Route::put('update-profile', [AuthController::class , 'updateProfile']);
+
+
     Route::get('logout',[AuthController::class,'logout'])->name('auth.logout');
 });
 

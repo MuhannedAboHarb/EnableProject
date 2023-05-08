@@ -1,9 +1,9 @@
 @extends('cms.parent')
 
-@section('title', 'Edit Password')
-@section('page-big-title', 'Edit Password')
+@section('title', 'Edit Profile')
+@section('page-big-title', 'Edit Profile')
 @section('page-main-title', 'Auth')
-@section('page-sub-title', 'Edit Password')
+@section('page-sub-title', 'Edit Profile')
 
 
 @section('styles')
@@ -22,7 +22,7 @@
               <!-- general form elements -->
               <div class="card card-primary">
                 <div class="card-header">
-                  <h3 class="card-title">Edit Password</h3>
+                  <h3 class="card-title">Edit Profile</h3>
                 </div> 
                 <!-- /.card-header -->
                 <!-- form start -->
@@ -30,27 +30,23 @@
                   @csrf
                   <div class="card-body">
                     <div class="form-group">
-                      <label for="current_password">Current Password </label>
-                      <input type="text" class="form-control"  id="current_password"  placeholder="Enter current password">
+                      <label for="name">Name </label>
+                      <input type="text" class="form-control" value="{{$user->name}}"  id="name"  placeholder="Enter name">
                     </div>
 
                     <div class="form-group">
-                      <label for="new_password">New Password </label>
-                      <input type="text" class="form-control"  id="new_password"  placeholder="Enter new password">
+                      <label for="email">Email </label>
+                      <input type="email" class="form-control" value="{{$user->email}}"  id="email"  placeholder="Enter email">
                     </div>
 
 
-                    <div class="form-group">
-                      <label for="new_password_confirmation">New Password Confirmation </label>
-                      <input type="text" class="form-control"  id="new_password_confirmation"  placeholder="Enter password confirmation">
-                    </div>
                     
                    
                   </div>
                   <!-- /.card-body -->
   
                   <div class="card-footer">
-                    <button type="button"  onclick="updatePassword()" class="btn btn-primary">Submit</button>
+                    <button type="button"  onclick="updateProfile()" class="btn btn-primary">Submit</button>
                   </div>
                 </form>
               </div>
@@ -67,11 +63,10 @@
 
 @section('scripts')
     <script>
-        function updatePassword(){
-            axios.put('/cms/admin/update-password',{
-              password: document.getElementById('current_password').value,
-              new_password: document.getElementById('new_password').value,
-              new_password_confirmation: document.getElementById('new_password_confirmation').value,
+        function updateProfile(){
+            axios.put('/cms/admin/update-profile',{
+              name: document.getElementById('name').value,
+              email: document.getElementById('email').value,
             })
             .then(function (response) {
               console.log(response);

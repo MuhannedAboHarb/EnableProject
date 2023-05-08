@@ -9,4 +9,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Broker extends Authenticatable
 {
     use HasFactory;
+
+    public function getUserNameAttribute()
+    {
+        return $this->name;
+    }
 }
