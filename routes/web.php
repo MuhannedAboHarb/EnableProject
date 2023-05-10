@@ -28,9 +28,9 @@ use Illuminate\Support\Facades\Route;
 Route::view('/cms/admin', 'cms.parent');
 
 
-Route::prefix('cms/admin')->middleware('guest:admin,broker')->group(function(){
-    Route::get('login', [AuthController::class, 'showLogin'])->name('auth.login-view');
-    Route::post('login',[AuthController::class, 'login'])->name('auth.login');
+Route::prefix('cms')->middleware('guest:admin,broker')->group(function(){
+    Route::get('{guard}/login', [AuthController::class, 'showLogin'])->name('auth.login-view');
+    Route::post('{guard}/login',[AuthController::class, 'login'])->name('auth.login');
 });
 
 

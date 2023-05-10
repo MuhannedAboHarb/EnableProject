@@ -86,6 +86,7 @@
               email: document.getElementById('email').value,
               password: document.getElementById('password').value,
               remember_me: document.getElementById('remember').checked,
+              guard:'{{$guard}}'
             })
             .then(function (response) {
               console.log(response);

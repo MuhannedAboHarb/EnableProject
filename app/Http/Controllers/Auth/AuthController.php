@@ -13,8 +13,8 @@ use Symfony\Component\HttpFoundation\Response;
 class AuthController extends Controller
 {
     //
-    public function showLogin(Request $request){
-        return response()->view('cms.auth.login');
+    public function showLogin(Request $request, $guard){
+        return response()->view('cms.auth.login',['guard'=>$guard]);
     }
 
     public function login(Request $request){
@@ -29,7 +29,7 @@ class AuthController extends Controller
 
         if(! $validator->fails()) {
             $credentials = ['email'=>$request->input('email'),'password'=>$request->input('password')];
-                        if(Auth::guard('admin')->attempt($credentials,$request->input('remember_me'))) {
+                        if(Auth::guard($request->input('guard'))->attempt($credentials,$request->input('remember_me'))) {
                             return response()->json([
                                 'message' => 'Logged in successfully'
                             ], Response::HTTP_OK);
@@ -118,10 +118,11 @@ class AuthController extends Controller
     //Logout
     public function logout(Request $request)
     {
+        $guard = auth('admin')->check() ? 'admin' :'broker';
         // auth('admin')->logout();
-        Auth::guard('admin')->logout();
+        Auth::guard($guard)->logout();
         $request->session()->invalidate();
-        return redirect()->route('auth.login-view');
+        return redirect()->route('auth.login-view',$guard);
     }
 
     private function getGuardName() : String{
