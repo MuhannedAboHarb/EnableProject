@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CityController;
+use App\Http\Controllers\RoleController;
 use App\Http\Middleware\CheckAge;
 use App\Models\Admin;
 use Illuminate\Routing\Route as RoutingRoute;
@@ -33,6 +34,9 @@ Route::prefix('cms')->middleware('guest:admin,broker')->group(function(){
     Route::post('{guard}/login',[AuthController::class, 'login'])->name('auth.login');
 });
 
+Route::prefix('cms/admin')->middleware('auth:admin')->group(function(){
+    Route::resource('roles',RoleController::class);
+});
 
 Route::prefix('cms/admin')->middleware('auth:admin,broker')->group(function(){
     Route::view('/', 'cms.parent');
